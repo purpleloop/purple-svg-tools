@@ -18,6 +18,8 @@ import javax.swing.filechooser.FileFilter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
 
 import purpleloop.commons.swing.SwingUtils;
 import purpleloop.tools.svg.model.SvgBuilder;
@@ -111,6 +113,8 @@ public class Test extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
+
+        Configurator.initialize(new DefaultConfiguration());
 
         LOG.info("Starting app");
 

@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class SvgDefContainer extends SvgObject {
 
     /** Class logger. */
-    private static final Logger logger = LogManager.getLogger(SvgDefContainer.class);
-
+    public static final Log LOG = LogFactory.getLog(SvgDefContainer.class);
     
     private List<SvgDefinition> definitions;
 
@@ -39,7 +38,7 @@ public class SvgDefContainer extends SvgObject {
     @Override
     public SvgDefinition resolveUrl(String url) {
 
-        logger.debug("Reference found : "+url);
+        LOG.debug("Reference found : "+url);
 
         String ref = url.substring(1);
         
@@ -47,7 +46,7 @@ public class SvgDefContainer extends SvgObject {
         for (SvgDefinition def : definitions) {
             if (def.getId().equals(ref)) {
 
-                logger.debug("Matching definition found for reference :"+def);
+                LOG.debug("Matching definition found for reference :"+def);
                 return def;
             }
         }

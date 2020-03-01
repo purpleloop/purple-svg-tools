@@ -10,5 +10,6 @@ module svgtools {
     requires org.apache.logging.log4j;
     requires org.apache.commons.lang3;
     requires xmlwriter;
+    requires org.apache.logging.log4j.core;
 	
 }

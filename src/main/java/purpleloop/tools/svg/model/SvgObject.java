@@ -4,13 +4,13 @@ import java.awt.Graphics2D;
 import java.util.Map;
 import java.util.Stack;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public abstract class SvgObject {
 
     /** Class logger. */
-    private static final Logger logger = LogManager.getLogger(SvgObject.class);
+    public static final Log LOG = LogFactory.getLog(SvgObject.class);
 
     private String id;
     private Style style;

@@ -4,13 +4,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class Length {
 
     /** Class logger. */
-    private static final Logger logger = LogManager.getLogger(Length.class);
+    public static final Log LOG = LogFactory.getLog(Length.class);
 
     private static final String INTEGER_REGEXP = "[+-]?[0-9]+";
 
@@ -36,12 +36,12 @@ public class Length {
                 // attributes, the units are assumed to be pixels.
 
             } else if (unit.equals("mm")) {
-                logger.info("units 'mm' limit -> 300 DPI");
+                LOG.info("units 'mm' limit -> 300 DPI");
                 valeur = valeur * 25.9 * 300.0;
             } else {
-                
+
                 // TODO Complete unit support
-                logger.warn("Unly 'px' are currently supported... '" + unit
+                LOG.warn("Unly 'px' are currently supported... '" + unit
                         + "' will be interpreted as px");
             }
 

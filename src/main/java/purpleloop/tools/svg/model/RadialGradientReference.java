@@ -3,17 +3,16 @@ package purpleloop.tools.svg.model;
 import java.awt.Color;
 import java.awt.Paint;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import purpleloop.tools.svg.tools.Paintable;
 
 public class RadialGradientReference extends SvgAbstractObject  implements LinearGradient, Paintable {
 
     /** Class logger. */
-    private static final Logger logger = LogManager.getLogger(RadialGradientReference.class);
-
-    
+    public static final Log LOG = LogFactory.getLog(RadialGradientReference.class);
+   
     private String reference;
     private Point center;
     private double fx;
@@ -42,7 +41,7 @@ public class RadialGradientReference extends SvgAbstractObject  implements Linea
 
             return linearGradientWithStops.getRadialPaint(center.toAwtPoint(),r);
         } else {
-            logger.warn("Unable to solve gradient reference "+getId()
+            LOG.warn("Unable to solve gradient reference "+getId()
             +" to "+reference+" as a paint object, rendering using gray color ...");
                         
             return Color.GRAY;
