@@ -22,6 +22,7 @@ import org.apache.commons.logging.LogFactory;
 import purpleloop.commons.swing.SwingUtils;
 import purpleloop.tools.svg.model.SvgBuilder;
 import purpleloop.tools.svg.model.SvgDocument;
+import purpleloop.tools.svg.model.SvgException;
 
 public class Test extends JFrame implements ActionListener {
 
@@ -33,7 +34,8 @@ public class Test extends JFrame implements ActionListener {
 
     private static final String ACTION_OPEN_SVG = "ACTION_OPEN_SVG";
 
-    private static final String ACTION_SAVE_GIF = "ACTION_SAVE_GIF";
+    /** Action to save the current document as a PNG file. */
+    private static final String ACTION_SAVE_PNG = "ACTION_SAVE_PNG";
 
     private static final String CMD_REFRESH = "CMD_REFRESH";
 
@@ -66,7 +68,7 @@ public class Test extends JFrame implements ActionListener {
         JMenu menuFichier = new JMenu("File");
 
         SwingUtils.addMenuItem("Open", ACTION_OPEN_SVG, this, menuFichier);
-        SwingUtils.addMenuItem("Export as Gif", ACTION_SAVE_GIF, this, menuFichier);
+        SwingUtils.addMenuItem("Export to PNG", ACTION_SAVE_PNG, this, menuFichier);
 
         JPanel cmdPanel = new JPanel();
         SwingUtils.createButton("Refresh", CMD_REFRESH, cmdPanel, this, true);
@@ -109,13 +111,13 @@ public class Test extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        
+
         LOG.info("Starting app");
 
         LOG.info("Registering PNG converters :");
-        Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("png");                
+        Iterator<ImageWriter> it = ImageIO.getImageWritersByFormatName("png");
         while (it.hasNext()) {
-            LOG.info("- ImageWriter : "+it.next());            
+            LOG.info("- ImageWriter : " + it.next());
         }
 
         Test tst = new Test();
@@ -132,18 +134,19 @@ public class Test extends JFrame implements ActionListener {
 
             openSvgFile();
 
-        } else if (command.equals(ACTION_SAVE_GIF)) {
-            saveGifFile();
+        } else if (command.equals(ACTION_SAVE_PNG)) {
+            savePNGFile();
         } else if (command.equals(CMD_REFRESH)) {
 
-            if (loadedSvgFile!=null) {
-                updateDocument();               
+            if (loadedSvgFile != null) {
+                updateDocument();
             }
 
         }
     }
 
-    private void saveGifFile() {
+    /** Saves the current SVG document to a PNG file. */
+    private void savePNGFile() {
 
         fileChooser.setFileFilter(ffPNG);
         int res = fileChooser.showSaveDialog(this);
@@ -151,7 +154,15 @@ public class Test extends JFrame implements ActionListener {
         if (res == JFileChooser.APPROVE_OPTION) {
 
             File file = fileChooser.getSelectedFile();
-            svgDoc.savePNGToFile(file);
+            try {
+                svgDoc.savePNGToFile(file);
+            } catch (SvgException e) {
+
+                LOG.error("Error while exporting the document as a PNG file.", e);
+                JOptionPane.showMessageDialog(this,
+                        "An error occured while exporting the document : " + e.getMessage(),
+                        "Export failed", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }
@@ -177,7 +188,7 @@ public class Test extends JFrame implements ActionListener {
     }
 
     private void updateDocument() {
-        
+
         svgDoc = SvgBuilder.loadFromFile(loadedSvgFile);
 
         if (svgDoc != null) {
@@ -185,7 +196,8 @@ public class Test extends JFrame implements ActionListener {
             rp.setDocument(svgDoc);
             repaint();
         } else {
-            showMessage("Unable to open the document in file " + loadedSvgFile.getAbsoluteFile() + ".");
+            showMessage(
+                    "Unable to open the document in file " + loadedSvgFile.getAbsoluteFile() + ".");
         }
     }
 

@@ -74,23 +74,26 @@ public class SvgDocument extends SvgContainer {
         return mapId.get(id);
     }
 
-    public void savePNGToFile(File file) {
+    /**
+     * Saves the current SVG document to a PNG file.
+     * 
+     * @throws IOException in case of IO error
+     */
+    public void savePNGToFile(File file) throws SvgException {
 
-        ImageOutputStream ios;
-        try {
-            ios = ImageIO.createImageOutputStream(file);
+        try (ImageOutputStream ios = ImageIO.createImageOutputStream(file);) {
             RenderedImage image = renderImage();
             boolean ok = ImageIO.write(image, "png", ios);
 
             if (!ok) {
-                LOG.error("No gif writer found");
+                throw new SvgException(
+                        "PNG export failed as no PNG image writer was found to export the document.");
             }
 
             ios.flush();
-            ios.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            throw new SvgException("an error occured while exporting the document to a PNG file.",
+                    e);
         }
 
     }
@@ -112,21 +115,19 @@ public class SvgDocument extends SvgContainer {
         Stack<Transformation> transformations = new Stack<Transformation>();
 
         AffineTransform affineTransform = new AffineTransform();
-       
-        if (viewBox!=null) {
-            
-            affineTransform.scale(width /viewBox.getWidth(), height / viewBox.getHeight());        
-            Matrix matrix = new Matrix(affineTransform);                
+
+        if (viewBox != null) {
+
+            affineTransform.scale(width / viewBox.getWidth(), height / viewBox.getHeight());
+            Matrix matrix = new Matrix(affineTransform);
             transformations.add(matrix);
         }
-        
 
         render(g2, transformations);
     }
 
     public void setViewBox(SvgViewBox viewBox) {
-        this.viewBox=viewBox;
-        
+        this.viewBox = viewBox;
     }
 
 }

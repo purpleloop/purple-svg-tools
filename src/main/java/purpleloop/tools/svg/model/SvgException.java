@@ -15,4 +15,15 @@ public class SvgException extends Exception {
         super(message);
     }
 
+    /**
+     * Creates an exception for a given message.
+     * 
+     * @param message error message
+     * @param cause source cause
+     */
+
+    public SvgException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
