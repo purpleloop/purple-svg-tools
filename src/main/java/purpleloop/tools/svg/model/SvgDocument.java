@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -23,27 +24,55 @@ public class SvgDocument extends SvgContainer {
     /** Class logger. */
     public static final Log LOG = LogFactory.getLog(SvgDocument.class);
 
+    /** Document's width. */
     private double width;
+
+    /** Document's height. */
     private double height;
 
+    /** Map of all SVG element id's in the document for a direct access. */
     private Map<String, SvgObject> mapId;
 
+    /** Viewbox. */
     private SvgViewBox viewBox;
 
+    /**
+     * Creates a SVG document with the given Id.
+     * 
+     * @param id document ID.
+     */
     public SvgDocument(String id) {
         super(id);
     }
 
+    /** Creates a SVG document. */
     public SvgDocument() {
         // TODO See if if it's a convention
         this("svg2");
     }
 
+    /**
+     * Sets the size of the document.
+     * 
+     * @param width width of the document
+     * @param height height of the document
+     */
     public void setSize(Double width, Double height) {
         this.width = width;
         this.height = height;
     }
 
+    /** @return width of the document */
+    public double getWidth() {
+        return width;
+    }
+
+    /** @return height of the document */
+    public double getHeight() {
+        return height;
+    }
+
+    /** Registers all element ids. */
     public void registerIds() {
 
         mapId = new HashMap<String, SvgObject>();
@@ -55,8 +84,9 @@ public class SvgDocument extends SvgContainer {
 
     }
 
+    /** @return all ids of the document */
     public Set<String> getIds() {
-        return mapId.keySet();
+        return Collections.unmodifiableSet(mapId.keySet());
     }
 
     /**

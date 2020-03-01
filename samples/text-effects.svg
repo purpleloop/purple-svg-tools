@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg3026"
+   version="1.1"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="text-effects.svg">
+  <defs
+     id="defs3028">
+    <linearGradient
+       id="linearGradient3896">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop3898" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="1"
+         id="stop3900" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3888">
+      <stop
+         style="stop-color:#7d4747;stop-opacity:1;"
+         offset="0"
+         id="stop3890" />
+      <stop
+         style="stop-color:#7d4747;stop-opacity:0;"
+         offset="1"
+         id="stop3892" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3888"
+       id="linearGradient3894"
+       x1="282.22656"
+       y1="100.20463"
+       x2="490.84375"
+       y2="100.20463"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3896"
+       id="linearGradient3902"
+       x1="282.22656"
+       y1="100.20463"
+       x2="490.84375"
+       y2="100.20463"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.668038"
+     inkscape:cx="436.71841"
+     inkscape:cy="884.76163"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3031">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3034"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="translate(-92.923544,-111.50825)"><flowRegion
+         id="flowRegion3036"
+         style="font-family:sans-serif"><rect
+           id="rect3038"
+           width="194.83969"
+           height="25.179281"
+           x="140.28458"
+           y="157.89813"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara3040"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">Hi this is a SVG text.</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3042"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="rotate(30.357355,162.225,114.30302)"><flowRegion
+         id="flowRegion3044"
+         style="font-family:sans-serif"><rect
+           id="rect3046"
+           width="101.04818"
+           height="45.465244"
+           x="61.749195"
+           y="159.69666"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara3048"
+         style="font-size:18px;line-height:1.25;font-family:sans-serif">This one is rotated.</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3050"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       transform="matrix(0.82285888,0,0,4.6891944,-22.592824,-866.70174)"><flowRegion
+         id="flowRegion3052"
+         style="font-family:sans-serif"><rect
+           id="rect3054"
+           width="275.17358"
+           height="22.55307"
+           x="50"
+           y="230"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara3056"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif">This one is stretched</flowPara></flowRoot>    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 375.29121,152.50258 c 83.33144,-2.99754 18.33062,49.80709 77.93588,73.73932 59.60526,23.93222 44.40708,-63.42237 113.30677,-43.16449 68.89969,20.25789 38.96794,47.36104 38.96794,47.36104"
+       id="path3058"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9px;line-height:0%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+       id="text3068"><textPath
+         xlink:href="#path3058"
+         id="textPath3074"
+         style="font-family:sans-serif"><tspan
+   id="tspan3070"
+   style="font-family:sans-serif"><tspan
+     id="tspan3072"
+     style="font-size:18px;font-family:sans-serif"
+     y="84.80513"
+     x="356.11841">Harder ! This one is along a path !</tspan></tspan></textPath></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3078"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion3080"><rect
+           id="rect3082"
+           width="449.63007"
+           height="33.572376"
+           x="288.36273"
+           y="29.004187"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Calibri;-inkscape-font-specification:Calibri" /></flowRegion><flowPara
+         id="flowPara3084"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Mistral;-inkscape-font-specification:Mistral">This one is written in a specific font !</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3096"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion3098"
+         style="font-family:sans-serif"><rect
+           id="rect3100"
+           width="173.85696"
+           height="36.569912"
+           x="352.50995"
+           y="274.80194"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara3102"
+         style="font-size:9px;line-height:1.25;font-family:sans-serif;text-align:center;text-anchor:middle">Yeah ! For sure if your read all this in a centered manner, then your renderer is pretty good !</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3104"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#00ffff;fill-opacity:1;stroke:#00ffff"
+       transform="translate(-30.574843,7.7935876)"><flowRegion
+         id="flowRegion3106"
+         style="font-family:sans-serif"><rect
+           id="rect3108"
+           width="203.83229"
+           height="40.166954"
+           x="59.351166"
+           y="337.75015"
+           style="font-family:sans-serif;fill:#00ffff;stroke:#00ffff" /></flowRegion><flowPara
+         id="flowPara3110"
+         style="font-size:32px;line-height:1.25;font-family:sans-serif;fill:#00ffff;stroke:#00ffff">The Blue one</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3112"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:url(#linearGradient3902);fill-opacity:1;stroke:#828282;stroke-opacity:1"><flowRegion
+         id="flowRegion3114"
+         style="font-family:sans-serif;fill:url(#linearGradient3902);fill-opacity:1;stroke:url(#linearGradient3894)"><rect
+           id="rect3116"
+           width="229.61107"
+           height="48.560047"
+           x="282.36768"
+           y="78.163742"
+           style="font-family:sans-serif;fill:url(#linearGradient3902);fill-opacity:1;stroke:#828282;stroke-opacity:1" /></flowRegion><flowPara
+         id="flowPara3118"
+         style="font-size:20px;line-height:1.25;font-family:sans-serif;fill:url(#linearGradient3902);fill-opacity:1;stroke:#828282;stroke-opacity:1">Look ma ! Gradients on texts are for real !</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3906"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0.01%;font-family:sans-serif;-inkscape-font-specification:Sans;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"><flowRegion
+         id="flowRegion3908"
+         style="font-family:sans-serif"><rect
+           id="rect3910"
+           width="242.20073"
+           height="51.557579"
+           x="253.59135"
+           y="338.94916"
+           style="font-family:sans-serif" /></flowRegion><flowPara
+         id="flowPara3912"
+         style="font-size:40px;line-height:1.25;font-family:sans-serif;fill:#ff00ff;stroke:#000000">Flashy Pink</flowPara></flowRoot>  </g>
+</svg>

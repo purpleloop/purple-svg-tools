@@ -86,4 +86,8 @@ public class Style {
         return allProperties;
     }
 
+    public void removeProperty(String string) {
+        properties.remove(string);
+    }
+
 }
