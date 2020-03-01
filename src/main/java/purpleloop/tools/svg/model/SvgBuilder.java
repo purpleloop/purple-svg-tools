@@ -391,12 +391,15 @@ public class SvgBuilder {
     }
 
     private static SvgObject analyseSvgImageElement(Element elt, String id) {
-        LOG.info("Analysis of an image élémént " + id);
+        LOG.info("Analysis of an image element id=" + id);
 
         String heightStr = elt.getAttribute("height");
         double height = readMeasure(heightStr);
         String widthStr = elt.getAttribute("width");
         double width = readMeasure(widthStr);
+
+        LOG.debug("Image size is " + width + " x " + height);
+
         String xlinkHRef = elt.getAttribute("xlink:href");
 
         // data:image/png;base64,iVBORw0...
@@ -405,10 +408,10 @@ public class SvgBuilder {
 
         String dataTypeStr = xlinkHRefPart[1];
         String type = dataTypeStr.substring(dataTypeStr.indexOf("/") + 1);
-        LOG.info("dataTypeStr " + dataTypeStr + " = type " + type);
+        LOG.info("* dataTypeStr is " + dataTypeStr + " => image type is " + type);
 
         String encoding = xlinkHRefPart[2];
-        LOG.info("encoding " + encoding);// base64
+        LOG.info("* data encoding is" + encoding);// base64
 
         String base64DataString = xlinkHRefPart[3];
         LOG.debug("base64DataString " + base64DataString);
@@ -421,18 +424,15 @@ public class SvgBuilder {
 
         ByteArrayInputStream bais = new ByteArrayInputStream(data);
 
-        ImageInputStream iis = null;
-        try {
-            iis = ImageIO.createImageInputStream(bais);
+        try (ImageInputStream iis = ImageIO.createImageInputStream(bais);) {
 
             Iterator<ImageReader> readerIt = ImageIO.getImageReadersByFormatName(type);
 
             BufferedImage image = null;
 
             ImageReader reader;
-
-            boolean found = false;
-            while (!found && readerIt.hasNext()) {
+            
+            while (readerIt.hasNext()) {
                 reader = readerIt.next();
                 ImageReadParam param = reader.getDefaultReadParam();
 
@@ -446,22 +446,13 @@ public class SvgBuilder {
                     return new SvgImage(id, image);
                 }
 
-                LOG.info("Unable to read image id=" + id + " with this reader " + reader);
+                LOG.error("Unable to read image id=" + id + " with this reader " + reader);
             }
 
             throw new RuntimeException("Unable to read image id=" + id + " no mode readers.");
 
         } catch (IOException e) {
             throw new RuntimeException("Exception during image processing id=" + id, e);
-        } finally {
-            if (iis != null) {
-                try {
-                    iis.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
         }
 
     }
