@@ -11,7 +11,7 @@
 	<packaging>jar</packaging>
 	<name>PurpleLoop Commons SVG Tools</name>
     <description>Tools for Scalale Vector Graphics (SVG) format</description>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
 
 	<organization>
 		<name>Purple Loop</name>
