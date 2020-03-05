@@ -3,6 +3,7 @@ package purpleloop.tools.svg.tools;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -36,13 +37,17 @@ public class XmlTools {
     }
 
     /**
-     * Buils the list of elements that are children of the given one.
+     * Builds the list of elements that are children of the given one.
      * 
      * @param ancestorElement ancestor element
-     * @return element list
+     * @return list of children elements (empty if ancestorElement is null)
      */
     public static List<Element> getChildrenElements(Element ancestorElement) {
 
+        if (ancestorElement==null) {
+            return Collections.emptyList();
+        }
+        
         ArrayList<Element> childrenElements = new ArrayList<Element>();
 
         NodeList nodeList = ancestorElement.getChildNodes();

@@ -6,7 +6,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>purpleloop.commons</groupId>
+    <groupId>io.github.purpleloop</groupId>
     <artifactId>svgtools</artifactId>
 	<packaging>jar</packaging>
 	<name>PurpleLoop Commons SVG Tools</name>
@@ -88,7 +88,7 @@
 
 
         <dependency>
-            <groupId>purpleloop.commons</groupId>
+            <groupId>io.github.purpleloop</groupId>
             <artifactId>purple-commons</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
