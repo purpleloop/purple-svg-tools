@@ -5,6 +5,7 @@ module svgtools {
     exports purpleloop.tools.svg.tools;
     
     requires purpleloop.commons;
+    requires purpleloop.commons.swing;
     requires transitive java.desktop;
 	requires transitive commons.logging;
     requires org.apache.logging.log4j;
