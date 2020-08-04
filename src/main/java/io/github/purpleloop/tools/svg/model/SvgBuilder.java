@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import io.github.purpleloop.tools.svg.tools.XmlTools;
+import io.github.purpleloop.commons.xml.XMLTools;
 
 public class SvgBuilder {
 
@@ -80,7 +80,7 @@ public class SvgBuilder {
     private static void addSvgChildrenElements(SvgContainer container, Element elt,
             Style parentStyle) {
         SvgObject svgObject;
-        List<Element> childrenElements = XmlTools.getChildrenElements(elt);
+        List<Element> childrenElements = XMLTools.getChildElements(elt);
         for (Element childElement : childrenElements) {
 
             try {
@@ -212,7 +212,7 @@ public class SvgBuilder {
         SvgDefContainer defContainer = new SvgDefContainer(id);
         LOG.debug("Definitions " + id);
 
-        List<Element> childrenElements = XmlTools.getChildrenElements(elt);
+        List<Element> childrenElements = XMLTools.getChildElements(elt);
         for (Element childElement : childrenElements) {
 
             SvgObject definition = analyseSvgContentsDefElement(childElement);
@@ -307,7 +307,7 @@ public class SvgBuilder {
             LOG.debug("Linear gradient");
             LinearGradientWithStops gradient = new LinearGradientWithStops(id);
 
-            List<Element> childrenElements = XmlTools.getChildrenElements(elt);
+            List<Element> childrenElements = XMLTools.getChildElements(elt);
             for (Element childElement : childrenElements) {
                 gradient.addStop(analyseSvgGradientStopElement(childElement));
             }
@@ -472,7 +472,7 @@ public class SvgBuilder {
     public static SvgDocument loadFromFile(File f) {
 
         try {
-            Document doc = XmlTools.getDocument(f);
+            Document doc = XMLTools.getDocument(f);
 
             Element racine = doc.getDocumentElement();
             SvgDocument svg = SvgBuilder.analyseSvgDocument(racine);
