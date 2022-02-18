@@ -143,16 +143,6 @@ public class SvgDocument extends SvgContainer {
 
     public void render(Graphics2D g2) {
         Stack<Transformation> transformations = new Stack<Transformation>();
-
-        AffineTransform affineTransform = new AffineTransform();
-
-        if (viewBox != null) {
-
-            affineTransform.scale(width / viewBox.getWidth(), height / viewBox.getHeight());
-            Matrix matrix = new Matrix(affineTransform);
-            transformations.add(matrix);
-        }
-
         render(g2, transformations);
     }
 

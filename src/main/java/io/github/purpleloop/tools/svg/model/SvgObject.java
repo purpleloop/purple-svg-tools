@@ -1,6 +1,7 @@
 package io.github.purpleloop.tools.svg.model;
 
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.util.Map;
 import java.util.Stack;
 
@@ -15,6 +16,9 @@ public abstract class SvgObject {
     private String id;
     private Style style;
     private SvgObject parent;
+
+    /** Memory of the graphic context transformation. */
+    private AffineTransform transformationMemory;
 
     public SvgObject(String id) {
         this.id = id;
@@ -66,6 +70,36 @@ public abstract class SvgObject {
             return parent.resolveUrl(url);
         }
         return null;
+    }
+
+    /**
+     * Prepare transformations on the graphic context. We preserve the current
+     * transformation (will be reseted on postTransform).
+     * 
+     * @param transformationStack the transformation stack
+     * @param g the graphic context
+     */
+    public void preTransform(Stack<Transformation> transformationStack, Graphics2D g) {
+
+        // Memorize the current transformation
+        // https://stackoverflow.com/questions/6681601/reset-graphics2d-object-in-java
+        transformationMemory = g.getTransform();
+
+        // Apply transformations
+        if (!transformationStack.isEmpty()) {
+            transformationStack.forEach(t -> g.setTransform(t.getTransformation()));
+        }
+
+    }
+
+    /**
+     * Reset the previous transformation on the graphic context.
+     * 
+     * @param g graphic context
+     */
+    public void postTransform(Graphics2D g) {
+
+        g.setTransform(transformationMemory);
     }
 
 }

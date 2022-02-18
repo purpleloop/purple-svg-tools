@@ -271,17 +271,15 @@ public class Path extends SvgObject {
     }
 
     @Override
-    public void render(Graphics2D g, Stack<Transformation> trans) {
+    public void render(Graphics2D g, Stack<Transformation> transformationStack) {
 
-        for (Transformation tran : trans) {            
-            path.transform(tran.getTransformation());
-        }
-        
-        
+        preTransform(transformationStack, g);
+
         StyleUtils.applyStyleFill(this, g);
         g.fill(path);
         StyleUtils.applyStyleDraw(this, g);
         g.draw(path);
+        postTransform(g);
 
     }
 
