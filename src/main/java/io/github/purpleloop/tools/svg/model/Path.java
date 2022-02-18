@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
+import java.util.Optional;
 import java.util.Stack;
 
 import org.apache.commons.logging.Log;
@@ -11,22 +12,12 @@ import org.apache.commons.logging.LogFactory;
 
 import io.github.purpleloop.tools.svg.tools.StyleUtils;
 
+/**
+ * Represents an SVG path.
+ */
 public class Path extends SvgObject {
 
-    public class PathCommand {
-
-        // Path commands are in lowercase for relative moves
-        // and uppercase for absolute moves
-
-        private static final String MOVE_RELATIVE = "m";
-        private static final String LINETO_RELATIVE = "l";
-        private static final String HORIZONTAL_LINETO_RELATIVE = "h";
-        private static final String VERTICAL_LINETO_RELATIVE = "v";
-        private static final String CURVE_RELATIVE = "c";
-        private static final String ARCH_RELATIVE = "a";
-        private static final String CLOSE_PATH = "z";
-    }
-
+    /** Class logger. */
     private static final Log LOG = LogFactory.getLog(Path.class);
 
     private GeneralPath path;
@@ -54,48 +45,68 @@ public class Path extends SvgObject {
 
         PathParser pathParser = new PathParser(pathDescription);
 
-        String pathCommand;
+        String pathCommandString;
 
-        boolean relativeMove;
+        PathCommand command = null;
+
+        boolean relativeMove = false;
         try {
 
             Point referencePoint = new Point(0.0, 0.0);
 
             while (pathParser.hasNext()) {
-                pathCommand = pathParser.nextPart();
-                if (pathCommand.equalsIgnoreCase(PathCommand.MOVE_RELATIVE)) {
-                    relativeMove = pathCommand.equals(PathCommand.MOVE_RELATIVE);
-                    referencePoint = parseMoveTo(pathParser, relativeMove, referencePoint);
 
-                } else if (pathCommand.equalsIgnoreCase(PathCommand.LINETO_RELATIVE)) {
-                    relativeMove = pathCommand.equals(PathCommand.LINETO_RELATIVE);
-                    referencePoint = parseLineTo(pathParser, relativeMove, referencePoint);
+                // See ahead for the command (may be omitted)
+                pathCommandString = pathParser.peekNextPart();
 
-                } else if (pathCommand.equalsIgnoreCase(PathCommand.HORIZONTAL_LINETO_RELATIVE)) {
-                    relativeMove = pathCommand.equals(PathCommand.HORIZONTAL_LINETO_RELATIVE);
-                    referencePoint = parseHorizontalLine(pathParser, relativeMove, referencePoint);
+                Optional<PathCommand> commandOptional = PathCommand.getCommand(pathCommandString);
 
-                } else if (pathCommand.equalsIgnoreCase(PathCommand.VERTICAL_LINETO_RELATIVE)) {
-                    relativeMove = pathCommand.equals(PathCommand.VERTICAL_LINETO_RELATIVE);
-                    referencePoint = parseVerticalLine(pathParser, relativeMove, referencePoint);
+                if (commandOptional.isPresent()) {
+                    command = commandOptional.get();
+                    relativeMove = command.isRelative(pathCommandString);
 
-                } else if (pathCommand.equalsIgnoreCase(PathCommand.CURVE_RELATIVE)) {
-                    relativeMove = pathCommand.equals(PathCommand.CURVE_RELATIVE);
+                    // Consume the command
+                    pathParser.nextPart();
 
-                    referencePoint = parseCurve(pathParser, relativeMove, referencePoint);
-
-                } else if (pathCommand.equalsIgnoreCase(PathCommand.ARCH_RELATIVE)) {
-
-                    referencePoint = parseArch(pathParser);
-
-                } else if (pathCommand.equalsIgnoreCase(PathCommand.CLOSE_PATH)) {
-
-                    LOG.debug("Closing path");
-                    path.closePath();
-                } else {
-                    LOG.error("Unknown path command '" + pathCommand + "'");
+                } else if (command == null) {
+                    LOG.error("Omitted command witout previous one");
                     break;
                 }
+
+                switch (command) {
+                case MOVE:
+                    referencePoint = parseMoveTo(pathParser, relativeMove, referencePoint);
+                    break;
+
+                case LINETO:
+                    referencePoint = parseLineTo(pathParser, relativeMove, referencePoint);
+                    break;
+
+                case HORIZONTAL_LINETO:
+                    referencePoint = parseHorizontalLine(pathParser, relativeMove, referencePoint);
+                    break;
+
+                case VERTICAL_LINETO:
+                    referencePoint = parseVerticalLine(pathParser, relativeMove, referencePoint);
+                    break;
+
+                case CURVE:
+                    referencePoint = parseCurve(pathParser, relativeMove, referencePoint);
+                    break;
+
+                case ARCH:
+                    referencePoint = parseArch(pathParser, relativeMove, referencePoint);
+                    break;
+
+                case CLOSE:
+                    LOG.debug("Closing path");
+                    path.closePath();
+                    break;
+
+                default:
+
+                }
+
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             LOG.error("Path analysis failed for id '" + getId());
@@ -242,22 +253,46 @@ public class Path extends SvgObject {
         return referencePoint;
     }
 
-    private Point parseArch(PathParser pathParser) {
+    private Point parseArch(PathParser pathParser, boolean relativeMove, Point referencePoint) {
+
         // TODO arc support
-        LOG.warn("Arcs are not supported / replaced by line");
+
+        // rx ry x-axis-rotation large-arc-flag sweep-flag dx dy
 
         // Arc
-        /* Point radius = Point.parseCoords(partsArray[p++]); double
-         * xAxisRotation = Double.parseDouble(partsArray[p++]); int largeArcFlag
-         * = Integer.parseInt(partsArray[p++]); int sweepFlag =
-         * Integer.parseInt(partsArray[p++]); */
-        Point location = Point.parseCoords(pathParser);
+        Point radius = Point.parseCoords(pathParser);
+        double xAxisRotation = Double.parseDouble(pathParser.nextPart());
+        int largeArcFlag = Integer.parseInt(pathParser.nextPart());
+        int sweepFlag = Integer.parseInt(pathParser.nextPart());
+        Point targetPoint = Point.parseCoords(pathParser);
 
-        /* parts.add(new EllipticArc(location, radius,xAxisRotation,
-         * largeArcFlag==0, sweepFlag == 0, pathCommand.equals("a"))); */
-        path.lineTo((float) location.getX(), (float) location.getY());
+        if (relativeMove) {
+            targetPoint.translate(referencePoint.getX(), referencePoint.getY());
+        }
 
-        return location;
+        if (LOG.isDebugEnabled()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Radius :");
+            sb.append(radius);
+            sb.append("X-axis-rotation :");
+            sb.append(xAxisRotation);
+            sb.append("Is large arc ?");
+            sb.append(largeArcFlag);
+            sb.append("Sweep arc ?");
+            sb.append(sweepFlag);
+            sb.append("dx,dy : ");
+            sb.append(targetPoint);
+            LOG.debug(sb.toString());
+        }
+
+        LOG.warn("Arcs are not supported / replaced by line");        
+        
+        /* parts.add(new EllipticArc(location, radius, xAxisRotation,
+         * largeArcFlag == 0, sweepFlag == 0, pathCommand.equals("a"))); */
+
+        path.lineTo((float) targetPoint.getX(), (float) targetPoint.getY());
+
+        return targetPoint;
     }
 
     /** {@inheritDoc} */
