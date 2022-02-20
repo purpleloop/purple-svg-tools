@@ -1,7 +1,6 @@
 package io.github.purpleloop.tools.svg.model;
 
 import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -18,7 +17,13 @@ import javax.imageio.stream.ImageOutputStream;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/** A SVG document. */
+/** A SVG document.
+ * 
+ * <ul>
+ * <li>To load a SVG document from a file, use {@link SvgBuilder#loadFromFile(File)}</li>
+ * </li>
+ *  
+ */
 public class SvgDocument extends SvgContainer {
 
     /** Class logger. */
